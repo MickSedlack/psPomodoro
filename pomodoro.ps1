@@ -79,6 +79,9 @@ Int32 lpdwProcessId);
 "@
  
 
+ Add-Type -AssemblyName presentationCore
+$mediaPlayer = New-Object system.windows.media.mediaplayer
+$mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\timber.mp3')
 $timer1 = New-Object 'System.Windows.Forms.Timer' 
 $timer1_Tick={
 		
@@ -96,6 +99,8 @@ $timer1_Tick={
 	
 		if ($global:BeanCounter -eq 0){
 			$global:Reps++
+			$mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\checkmark.wav')
+			$mediaPlayer.Play()
 			if ($global:Reps % 8 -eq 0){
 				$global:BeanCounter = $global:LongBreakMin
 				Write-Host "LongBreakMin"
