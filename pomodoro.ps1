@@ -2,8 +2,6 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
 #invoking powertoys hotkey for Always On Top
 
-
-
 $Form                            		= New-Object system.Windows.Forms.Form
 $Form.ClientSize                	= '275,175'
 $Form.text							= "Pomodoro"
@@ -77,8 +75,6 @@ Int32 lpdwProcessId);
        public static extern Int32 GetWindowTextLength(IntPtr hWnd);
     }
 "@
- 
-
  Add-Type -AssemblyName presentationCore
 $mediaPlayer = New-Object system.windows.media.mediaplayer
 $mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\timber.mp3')
@@ -95,8 +91,6 @@ $timer1_Tick={
 			write-host "Window Title: $($sb.tostring())"
 			$global:oldwindow = $sb.tostring()
 		}
-		#$sb.tostring()
-	
 		if ($global:BeanCounter -eq 0){
 			$global:Reps++
 			$mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\checkmark.wav')
@@ -136,9 +130,6 @@ $timer1_Tick={
 			$CountMinutes = "0$($CountMinutes)"
 		}
 		$Clock.text = "$($CountMinutes):$($CountSeconds)"
-		#[string[]]$ticker_clocks = "a", "b", "c", "d"
-		#$ticker_count = $global:BeanCounter % 4
-		#$ticker.text = $ticker_clocks[$ticker_count]
     } 
 $timer1.Enabled = $True
 $timer1.Interval = 10
@@ -146,7 +137,6 @@ $timer1.add_Tick($timer1_Tick)
 
 $Form.controls.AddRange(@($CLock))
 $Form.Controls.Add($label)
-#$Form.Controls.Add($ticker)
 $form.Controls.Add($pauseButton)
 
 $Form.showDialog()
