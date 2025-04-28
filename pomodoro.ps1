@@ -45,7 +45,6 @@ $pauseButton.Add_Click({
 	$global:Pause = -not $global:Pause
 })
 
-
 $global:WorkMin = 1500
 $global:ShortBreakMin = 300
 $global:LongBreakMin = 1500
@@ -57,40 +56,12 @@ $global:Pause = 0
 $global:once = 1
 $global:oldwindow
 $global:letterArray = 'a','b','c','d'
-Add-Type  @"
- using System;
- using System.Runtime.InteropServices;
- using System.Text;
-public class APIFuncs
-   {
-    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-   public static extern int GetWindowText(IntPtr hwnd,StringBuilder
-lpString, int cch);
-    [DllImport("user32.dll", SetLastError=true, CharSet=CharSet.Auto)]
-   public static extern IntPtr GetForegroundWindow();
-    [DllImport("user32.dll", SetLastError=true, CharSet=CharSet.Auto)]
-       public static extern Int32 GetWindowThreadProcessId(IntPtr hWnd,out
-Int32 lpdwProcessId);
-    [DllImport("user32.dll", SetLastError=true, CharSet=CharSet.Auto)]
-       public static extern Int32 GetWindowTextLength(IntPtr hWnd);
-    }
-"@
- Add-Type -AssemblyName presentationCore
+
 $mediaPlayer = New-Object system.windows.media.mediaplayer
 $mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\timber.mp3')
 $timer1 = New-Object 'System.Windows.Forms.Timer' 
 $timer1_Tick={
 		
-		$w = [apifuncs]::GetForegroundWindow()
-		$len = [apifuncs]::GetWindowTextLength($w)
-		$sb = New-Object text.stringbuilder -ArgumentList ($len + 1)
-		$rtnlen = [apifuncs]::GetWindowText($w,$sb,$sb.Capacity)
-		#write-host "Window Title: $($sb.tostring())"
-		if ($sb.tostring() -ne $global:oldwindow)
-		{
-			write-host "Window Title: $($sb.tostring())"
-			$global:oldwindow = $sb.tostring()
-		}
 		if ($global:BeanCounter -eq 0){
 			$global:Reps++
 			$mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\checkmark.wav')
