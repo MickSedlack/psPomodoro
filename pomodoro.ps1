@@ -111,10 +111,9 @@ $Form.Controls.Add($label)
 $Form.Controls.Add($ticker)
 $form.Controls.Add($pauseButton)
 
-#invoking personal powertoys hotkey for Always On Top
+#Pulls focus to window
 $wshell = New-Object -ComObject wscript.shell;
-$wshell.AppActivate('Pomodoro')
-$wshell.SendKeys('^{UP}')
+$wshell.AppActivate($Form.text);
 
 $Form.showDialog()
 $Form.Dispose()
