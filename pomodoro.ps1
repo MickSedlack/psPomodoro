@@ -11,7 +11,6 @@ $code = @"
 "@
 $PInvoke = Add-Type -MemberDefinition $code -Name "PInvoke" -PassThru
 $null = $PInvoke::SetProcessDpiAwareness(2)
-#invoking powertoys hotkey for Always On Top
 Add-Type -AssemblyName PresentationCore 
 $Form = New-Object system.Windows.Forms.Form
 $Form.ClientSize = '230,175'
@@ -46,13 +45,6 @@ $pauseButton.Location = New-Object System.Drawing.Point(75,150)
 $pauseButton.Size = New-Object System.Drawing.Size(75,23)
 $pauseButton.Text = 'Pause'
 $pauseButton.Add_Click({
-	if($global:onlyonce -eq 1)
-	{
-		$wshell = New-Object -ComObject wscript.shell;
-		$wshell.AppActivate('Pomodoro')
-		$wshell.SendKeys('^{UP}')
-		$global:once = 0
-	}
 	$global:Pause = -not $global:Pause
 })
 
@@ -64,13 +56,11 @@ $global:OldTimeSecond =  (Get-Date).ToString("ss")
 $global:BeanCounter = 0
 $global:Reps = 0
 $global:Pause = 0
-$global:once = 1
 $global:letterArray = '0x000025F5', '0x000025F6', '0x000025F7', '0x000025F4'
 
 $mediaPlayer = New-Object system.windows.media.mediaplayer
 $timer1 = New-Object 'System.Windows.Forms.Timer' 
 $timer1_Tick={
-		
 		if ($global:BeanCounter -eq 0){
 			$global:Reps++
 			$mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\checkmark.wav')
@@ -98,7 +88,6 @@ $timer1_Tick={
 		if ($CurrentTimeSecond -ne  $global:OldTimeSecond){
 			$global:BeanCounter = $global:BeanCounter - $global:Pause
 			$global:OldTimeSecond = $CurrentTimeSecond
-			
 		}
 		$CountMinutes  =  [Math]::floor($global:BeanCounter / 60)
 		$CountSeconds = $global:BeanCounter % 60
@@ -121,6 +110,11 @@ $Form.controls.AddRange(@($CLock))
 $Form.Controls.Add($label)
 $Form.Controls.Add($ticker)
 $form.Controls.Add($pauseButton)
+
+#invoking personal powertoys hotkey for Always On Top
+$wshell = New-Object -ComObject wscript.shell;
+$wshell.AppActivate('Pomodoro')
+$wshell.SendKeys('^{UP}')
 
 $Form.showDialog()
 $Form.Dispose()
