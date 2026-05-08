@@ -1,0 +1,22 @@
+{
+	"program_title": "Pomodoro",
+	"backcolor": "#f7f5dd",
+	"clock_forecolor":  "#ff0000",
+	"clockfont":  'Overpass',
+	"clockfontsize": 28,
+	"labelfont": 'Overpass',
+	"labelfontsize": 24,
+	"tickerfont": "Segoe UI",
+	"tickerfontsize": 24,
+	"worktimes": [
+		"workmin": 1500,
+		"shortbreakmin": 300,
+		"longbreakmin": 1500,
+	],
+	"ticker_letters": [
+		"letter_one": '0x000025F5', 
+		"letter_two": '0x000025F6',
+		"letter_three":'0x000025F7', 
+		"letter_four": '0x000025F4'
+	]
+}
