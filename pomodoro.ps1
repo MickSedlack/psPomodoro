@@ -66,12 +66,9 @@ $global:BeanCounter = 0
 $global:Reps = 0
 $global:Pause = 0
 $global:once = 1
-$global:oldwindow
-$global:letterArray = 'a','b','c','d'
 $global:letterArray = '0x000025F5', '0x000025F6', '0x000025F7', '0x000025F4'
 
 $mediaPlayer = New-Object system.windows.media.mediaplayer
-$mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\timber.mp3')
 $timer1 = New-Object 'System.Windows.Forms.Timer' 
 $timer1_Tick={
 		
