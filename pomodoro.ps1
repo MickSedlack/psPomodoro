@@ -82,21 +82,18 @@ $timer1_Tick={
 				$global:BeanCounter = $global:LongBreakMin
 				Write-Host "LongBreakMin"
 				$label.Text = "Break"
-				$label.Location	= New-Object System.Drawing.Point(80,0)
 				$label.Location	= New-Object System.Drawing.Point(60,0)
 			}
 			elseif ($global:Reps % 2 -eq 0){
 				$global:BeanCounter = $global:ShortBreakMin
 				Write-Host "ShortBreakMin"
 				$label.Text = "Break" 
-				$label.Location	= New-Object System.Drawing.Point(80,0)
 				$label.Location	= New-Object System.Drawing.Point(60,0)
 			}
 			else{
 				$global:BeanCounter = $global:WorkMin
 				Write-Host "Work"
 				$label.Text = "Work" 
-				$label.Location = New-Object System.Drawing.Point(90,0)
 				$label.Location = New-Object System.Drawing.Point(60,0)
 			}
 		}
