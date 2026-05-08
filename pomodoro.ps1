@@ -32,12 +32,14 @@ $CLock.ForeColor = "#ff0000"
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(60,0)
 $label.Size = New-Object System.Drawing.Size(280,40)
+$label.ForeColor="000000"
 $label.Font = 'Segoe UI,24'
 
 $ticker = New-Object System.Windows.Forms.Label
 $ticker.Location = New-Object System.Drawing.Point(90,100)
 $ticker.Size = New-Object System.Drawing.Size(280,40)
 $ticker.Font = [Font]::new("Segoe UI", 24)
+$ticker.ForeColor="000000"
 $ticker.text = ""
 
 $pauseButton = New-Object System.Windows.Forms.Button
@@ -57,6 +59,23 @@ $global:BeanCounter = 0
 $global:Reps = 0
 $global:Pause = 0
 $global:letterArray = '0x000025F5', '0x000025F6', '0x000025F7', '0x000025F4'
+
+if (Test-Path config.json)
+{
+	$json = Get-Content config.json | ConvertFrom-Json
+	$Form.text = $json.program_title
+	$Form.BackColor = $json.backcolor
+	$CLock.BackColor = $json.backcolor
+	$CLock.ForeColor = $json.clock_forecolor
+	$CLock.Font = $json.clockfont
+	$label.ForeColor = $json.label_forecolor 
+	$label.Font = $json.tickerfont
+	$global:WorkMin = $json.worktimes.workmin
+	$global:ShortBreakMin = $json.worktimes.shortbreakmin
+	$global:LongBreakMin = $json.worktimes.longbreakmin
+	$ticker.ForeColor = $json.ticker_forecolor
+	$global:letterArray = $json.ticker_letters.letter_one, $json.ticker_letters.letter_two,$json.ticker_letters.letter_three, $json.ticker_letters.letter_four
+}
 
 $mediaPlayer = New-Object system.windows.media.mediaplayer
 $timer1 = New-Object 'System.Windows.Forms.Timer' 
