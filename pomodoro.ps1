@@ -14,8 +14,6 @@ $null = $PInvoke::SetProcessDpiAwareness(2)
 #invoking powertoys hotkey for Always On Top
 Add-Type -AssemblyName PresentationCore 
 $Form = New-Object system.Windows.Forms.Form
-
-$Form = New-Object system.Windows.Forms.Form
 $Form.ClientSize = '230,175'
 $Form.text = "Pomodoro"
 $Form.BackColor = "#f7f5dd"
@@ -45,7 +43,7 @@ $ticker.Font = [Font]::new("Segoe UI", 24)
 $ticker.text = ""
 
 $pauseButton = New-Object System.Windows.Forms.Button
-$pauseButton.Location = New-Object System.Drawing.Point(100,150)
+$pauseButton.Location = New-Object System.Drawing.Point(75,150)
 $pauseButton.Size = New-Object System.Drawing.Size(75,23)
 $pauseButton.Text = 'Pause'
 $pauseButton.Add_Click({
@@ -85,18 +83,21 @@ $timer1_Tick={
 				Write-Host "LongBreakMin"
 				$label.Text = "Break"
 				$label.Location	= New-Object System.Drawing.Point(80,0)
+				$label.Location	= New-Object System.Drawing.Point(60,0)
 			}
 			elseif ($global:Reps % 2 -eq 0){
 				$global:BeanCounter = $global:ShortBreakMin
 				Write-Host "ShortBreakMin"
 				$label.Text = "Break" 
 				$label.Location	= New-Object System.Drawing.Point(80,0)
+				$label.Location	= New-Object System.Drawing.Point(60,0)
 			}
 			else{
 				$global:BeanCounter = $global:WorkMin
 				Write-Host "Work"
 				$label.Text = "Work" 
 				$label.Location = New-Object System.Drawing.Point(90,0)
+				$label.Location = New-Object System.Drawing.Point(60,0)
 			}
 		}
 		$CurrentTimeSecond = (Get-Date).ToString("ss")
