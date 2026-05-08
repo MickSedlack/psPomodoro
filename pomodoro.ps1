@@ -33,8 +33,7 @@ $CLock.ForeColor = "#ff0000"
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(60,0)
 $label.Size = New-Object System.Drawing.Size(280,40)
-$label.Font = 'Overpass,24'
-#$label.Text = "Pomodoro"
+$label.Font = 'Segoe UI,24'
 
 $ticker = New-Object System.Windows.Forms.Label
 $ticker.Location = New-Object System.Drawing.Point(90,100)
@@ -120,6 +119,7 @@ $timer1.add_Tick($timer1_Tick)
 
 $Form.controls.AddRange(@($CLock))
 $Form.Controls.Add($label)
+$Form.Controls.Add($ticker)
 $form.Controls.Add($pauseButton)
 
 $Form.showDialog()
