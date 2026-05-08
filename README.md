@@ -4,3 +4,5 @@ Just a simple gui and starter. Starter is to allow the gui to spawn with a hidde
 Ticker can take any unicode per font choice. 
 Loads from simple json file, to provide a lil configuration.
 On launch window takes focus.
+
+Recommend a [PS2EXE conversion](https://github.com/MScholtes/PS2EXE) for the launcher to provide shortcuts.
