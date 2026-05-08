@@ -122,7 +122,7 @@ $timer1_Tick={
 		$Clock.text = "$($CountMinutes):$($CountSeconds)"
     } 
 $timer1.Enabled = $True
-$timer1.Interval = 10
+$timer1.Interval = 25
 $timer1.add_Tick($timer1_Tick) 	
 
 $Form.controls.AddRange(@($CLock))
