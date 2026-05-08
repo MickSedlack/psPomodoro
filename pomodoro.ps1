@@ -1,6 +1,19 @@
+using namespace System.Drawing
+using namespace System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
+[System.Windows.Forms.Application]::SetCompatibleTextRenderingDefault($false)
+
+$code = @"
+    [System.Runtime.InteropServices.DllImport("Shcore.dll")]
+    public static extern int SetProcessDpiAwareness(int dpiAwarenessMode);
+"@
+$PInvoke = Add-Type -MemberDefinition $code -Name "PInvoke" -PassThru
+$null = $PInvoke::SetProcessDpiAwareness(2)
 #invoking powertoys hotkey for Always On Top
+Add-Type -AssemblyName PresentationCore 
+$Form = New-Object system.Windows.Forms.Form
 
 $Form                            		= New-Object system.Windows.Forms.Form
 $Form.ClientSize                	= '275,175'
