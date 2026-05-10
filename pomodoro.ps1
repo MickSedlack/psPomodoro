@@ -32,14 +32,14 @@ $CLock.ForeColor = "#ff0000"
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(60,0)
 $label.Size = New-Object System.Drawing.Size(280,40)
-$label.ForeColor="000000"
+$label.ForeColor="#000000"
 $label.Font = 'Segoe UI,24'
 
 $ticker = New-Object System.Windows.Forms.Label
 $ticker.Location = New-Object System.Drawing.Point(90,100)
 $ticker.Size = New-Object System.Drawing.Size(280,40)
 $ticker.Font = [Font]::new("Segoe UI", 24)
-$ticker.ForeColor="000000"
+$ticker.ForeColor="#000000"
 $ticker.text = ""
 
 $pauseButton = New-Object System.Windows.Forms.Button
