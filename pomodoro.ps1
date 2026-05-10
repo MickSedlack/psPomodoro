@@ -50,6 +50,8 @@ $pauseButton.Add_Click({
 	$global:Pause = -not $global:Pause
 })
 
+$audio_alert = "checkmark.wav"
+
 $global:WorkMin = 1500
 $global:ShortBreakMin = 300
 $global:LongBreakMin = 1500
@@ -75,14 +77,16 @@ if (Test-Path config.json)
 	$global:LongBreakMin = $json.worktimes.longbreakmin
 	$ticker.ForeColor = $json.ticker_forecolor
 	$global:letterArray = $json.ticker_letters.letter_one, $json.ticker_letters.letter_two,$json.ticker_letters.letter_three, $json.ticker_letters.letter_four
+	$audio_alert = $json.audio_alert
 }
 
+$path = (Get-Item .).FullName
 $mediaPlayer = New-Object system.windows.media.mediaplayer
 $timer1 = New-Object 'System.Windows.Forms.Timer' 
 $timer1_Tick={
 		if ($global:BeanCounter -eq 0){
 			$global:Reps++
-			$mediaPlayer.open('C:\Users\Mick\Documents\Projects\psPomodoro\checkmark.wav')
+			$mediaPlayer.open("$path\$audio_alert")
 			$mediaPlayer.Play()
 			if ($global:Reps % 8 -eq 0){
 				$global:BeanCounter = $global:LongBreakMin
